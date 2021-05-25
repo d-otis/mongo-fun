@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-mongoose.connect("mongodb://localhost:27017/blog_demo", {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect("mongodb://localhost:27017/mongo_fun", {useNewUrlParser: true, useUnifiedTopology: true})
 
 const db = mongoose.connection
 
@@ -20,6 +20,14 @@ const User = new mongoose.model("User", userSchema)
 let danny = new User({
   name: "Danny",
   email: "dan.dorff@gmail.com"
+})
+
+danny.save((err, user) => {
+  if(err) {
+    console.log(err)
+  } else {
+    console.log(user)
+  }
 })
 
 db.on("error", console.error.bind(console, "connection error: "))
